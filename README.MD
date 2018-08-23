@@ -32,6 +32,7 @@ The goal is to create a secure communication between an android application and 
 
 - Need to replace the depricated mcrypt PHP function with OpenSSL
 - Create an Android application 
+- Add server side scripts for Go, Node, Python, C# and Ruby
 
 **Files**
 - [server.php](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/server.php)
