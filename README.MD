@@ -35,18 +35,20 @@ The goal is to create a secure communication between an android application and 
 - Add server side scripts for Go, Node, Python, C# and Ruby
 
 **Files**
-- [server.php](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/server.php)
-    - This file contains the PHP side server logic for request receiving and response
-- [Security.php](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Security.php)
-    - This file contains the logic for RSA key pair generation (RSA 4096), RSA encryption and decryption, AES encryption and decryption
-- [DecryptPayload.java](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/DecryptPayload.java)
+- [server.php](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/PHP/server.php)
+    - This file contains the PHP side server logic for request receiving and response, uses [Security.php](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/PHP/Security.php)
+- [DecryptPayload.java](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Java/DecryptPayload.java)
     - A simple Java source code to decrypt the encrypted server response
-- [GeneratePayload.java](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/GeneratePayload.java)
+- [GeneratePayload.java](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Java/GeneratePayload.java)
     - A simple Java source code to generate the encrypted message which will be processed by server.
-- [private.pem](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/private.pem)
+- [private.pem](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Keypair/private.pem)
     - A dummy RSA private key file
-- [public.der](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/public.der)
+- [public.der](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Keypair/public.der)
     - A dummy RSA public key file
+- [go_compatible_private.pem](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Keypair/go_compatible_private.pem)
+    - A dummy RSA private key file (Compatible with Go lang, see this issue [x509.ParsePKCS1PrivateKey](https://groups.google.com/forum/#!topic/golang-nuts/ZZ1Wt9d268Q)
+- [server.go](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Go/server.go)
+    - A Go sample script to encrypt/decrypt the messages using RSA and AES, uses [security.go](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Go/security/security.go)
 
 **Sample Output**
 - GeneratePayload.java
@@ -66,3 +68,14 @@ The goal is to create a secure communication between an android application and 
     >Decrypted AES Key: 0162a5e5257306d67de8a83c51c7ce67
     
     > Decrypted Text: Hi, I am your little server
+
+
+**Knowledge Base**
+> This project uses RSA 4096, AES 128 ECB
+> Private key is created using PHP OpenSSL
+> To create public key (.der) use the command: openssl rsa -in private.pem -pubout -outform DER -out public.der
+> You can convert the private.pem to Go compatible PEM using command: openssl rsa -in private.pem -out go_compatible_private.pem
+
+**Contribution**
+There is always room for improvement, I am planning to improve the communication security by replacing ECB mode to CBC, and few others. Also I am thinking to add more and more client (mobile) and server languages for secure communication. Like in future I will keep on adding more server side languages, compatible encryption/decryption methods among them, also I will add mobile mobile side apps like for iOS, React Native, Windows Phone etc
+This project is open for contribution, create a PR with detailed changes.
