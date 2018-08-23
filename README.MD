@@ -34,17 +34,17 @@ The goal is to create a secure communication between an android application and 
 - Create an Android application 
 
 **Files**
-- server.php
+- [server.php](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/server.php)
     - This file contains the PHP side server logic for request receiving and response
-- Security.php
+- [Security.php](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Security.php)
     - This file contains the logic for RSA key pair generation (RSA 4096), RSA encryption and decryption, AES encryption and decryption
-- DecryptPayload.java
+- [DecryptPayload.java](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/DecryptPayload.java)
     - A simple Java source code to decrypt the encrypted server response
-- GeneratePayload.java
+- [GeneratePayload.java](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/GeneratePayload.java)
     - A simple Java source code to generate the encrypted message which will be processed by server.
-- private.pem
+- [private.pem](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/private.pem)
     - A dummy RSA private key file
-- public.der
+- [public.der](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/public.der)
     - A dummy RSA public key file
 
 **Sample Output**
@@ -63,4 +63,5 @@ The goal is to create a secure communication between an android application and 
     ```
 - DecryptPayload.java
     >Decrypted AES Key: 0162a5e5257306d67de8a83c51c7ce67
+    
     > Decrypted Text: Hi, I am your little server
