@@ -72,8 +72,11 @@ The goal is to create a secure communication between an android application and 
 
 **Knowledge Base**
 > This project uses RSA 4096, AES 128 ECB
+
 > Private key is created using PHP OpenSSL
+
 > To create public key (.der) use the command: openssl rsa -in private.pem -pubout -outform DER -out public.der
+
 > You can convert the private.pem to Go compatible PEM using command: openssl rsa -in private.pem -out go_compatible_private.pem
 
 **Contribution**
