@@ -48,25 +48,26 @@
         $_POST = $data = file_get_contents('php://input');
         if($_POST){
             $_POST = json_decode($_POST, true);
-            if( isset($_POST['cipher_key']) && isset($_POST['cipher_value']) ){
-                $cipherKey = $_POST['cipher_key'];
-                $cipherValue = $_POST['cipher_value'];
+            if( isset($_POST['aes_key']) && isset($_POST['aes_value']) ){
+                $cipherKey = $_POST['aes_key'];
+                $cipherValue = $_POST['aes_value'];
     
                 //Decrypt the encrypted AES key using RSA
-                $decryptedKey = $security->RSA_Decrypt("private.pem", base64_decode($cipherKey));
+                $decryptedKey = $security->RSA_Decrypt("../Keypair/private.pem", base64_decode($cipherKey));
                 if($decryptedKey){
-                    $decryptedValue = $security->AES_Decrypt(base64_decode($cipherValue), $decryptedKey);
+                    $decryptedValue = $security->AES_CBC_Decrypt(base64_decode($cipherValue), $decryptedKey);
                     //perform some operation on your decrypted value, and then finally send the response
 
                     $aes_key = $security->AES_Keygen();
                     $response = "Hi, I am your little server";
-                    $cipher_value = $security->AES_Encrypt($response, $aes_key);
-                    $cipher_key = $security->RSA_Encrypt("private.pem", $aes_key);
+                    $cipher_value = $security->AES_CBC_Encrypt($response, $aes_key);
+                    $cipher_key = $security->RSA_Encrypt("../Keypair/private.pem", $aes_key);
+
                     $reply = array(
                         'your_message' => $decryptedValue,
-                        'cipher_key' => base64_encode($cipher_key),
-                        'cipher_value' => base64_encode($cipher_value),
-                        'response_code' => 200
+                        'aes_key' => base64_encode($cipher_key),
+                        'response' => base64_encode($cipher_value),
+                        'response_code' => 200,
                     );
                     sendResponse($reply, 200);
                 } else {
