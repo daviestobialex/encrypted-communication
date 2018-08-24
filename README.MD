@@ -1,4 +1,4 @@
-# Secure communication between Mobile and Server (RSA 4096/AES) 😎
+# Secure communication between Mobile and Server (RSA-4096/AES-256-CBC) 😎
 
 **Abstract**
 
