@@ -117,7 +117,7 @@ class GeneratePayload{
             String encryptedPayload = AES_256_Encrypt(payload.getBytes(), secKey);
 
             //encrypt the AES secret key using RSA
-            String encryptedKey = RSA_Encrypt("../Keypair/public.der", secKey.getEncoded());
+            String encryptedKey = RSA_Encrypt("../../keypair/public.der", secKey.getEncoded());
 
             System.out.println("Encrypted Text: " + encryptedPayload);
             System.out.println("Encrypted AES Key: " + encryptedKey);

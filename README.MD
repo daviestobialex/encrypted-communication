@@ -4,9 +4,13 @@
 
 The goal is to create a secure communication between an android application and server using RSA. We know that RSA is not meant for bulk data encryption, and hence we have introduced AES to encrypt the data and RSA to encrypt the AES key.
 
+**Messages from server apps will be decrypted on mobile apps and messages from mobile apps will be decrypted on server apps**
+
+**Mobile apps will be using public RSA key and server apps will be using private RSA key**
+
 **Flow**
 
-- Android:
+- Mobile:
     1. Will create a secure random key for AES
     2. Using the key, it will encrypt the payload
     3. The key will be then encrypted using public key (RSA)
@@ -22,7 +26,7 @@ The goal is to create a secure communication between an android application and 
     7. The random AES key will be then encrypted using private key (RSA)
     8. Server will reply back both the encrypted key and encrypted response
 
-- Android:
+- Mobile:
     1. Android will receive the encrypted key and response
     2. Encrypted key will be decrypted using public key (RSA)
     3. Using the decrypted key, the response will be decrypted
@@ -34,21 +38,6 @@ The goal is to create a secure communication between an android application and 
 - Create an Android application 
 - Add server side scripts for ~~Go~~, Node, Python, C# and Ruby
 
-**Files**
-- [server.php](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/PHP/server.php)
-    - This file contains the PHP side server logic for request receiving and response, uses [Security.php](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/PHP/Security.php)
-- [DecryptPayload.java](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Java/DecryptPayload.java)
-    - A simple Java source code to decrypt the encrypted server response
-- [GeneratePayload.java](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Java/GeneratePayload.java)
-    - A simple Java source code to generate the encrypted message which will be processed by server.
-- [private.pem](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Keypair/private.pem)
-    - A dummy RSA private key file
-- [public.der](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Keypair/public.der)
-    - A dummy RSA public key file
-- [go_compatible_private.pem](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Keypair/go_compatible_private.pem)
-    - A dummy RSA private key file (Compatible with Go lang, see this issue [x509.ParsePKCS1PrivateKey](https://groups.google.com/forum/#!topic/golang-nuts/ZZ1Wt9d268Q)
-- [server.go](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Go/server.go)
-    - A Go sample script to encrypt/decrypt the messages using RSA and AES, uses [security.go](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/Go/security/security.go)
 
 **Sample Output**
 - GeneratePayload.java

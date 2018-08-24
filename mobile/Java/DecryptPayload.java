@@ -101,7 +101,7 @@ class DecryptPayload{
             //decrypt the AES key
             String aesKey = "dhbBkYbVf1EBZLF8F+2rSbT6UGDTEfeyxZgSJb7KxX+S10ETKJvrH1+o/04gsb0nLJSjgfpJp92HRh2n6B//GhwhkVXAvucPrxZqo779mHiC1aiopSh6RAd2veM2bZLEr9fDsvc85vR0wXiaId6PaRU4ocqOjDWRXsy9xpYa3/G+9dmIun7SfsM98J5OnkqfasnrGOvRawdpF2BzVerswHWIsKTxZQqEScKU66I1mR0eiNQUwyc8bWS26Jquh1r7BnDPcjg5Rlw6KefcssQHi7D1HSpOTdKUnlT78yEbDs+vR2oAe74J6x8IYT4x94DPl2TAxY72bxavhTkGcZMtMnzcpGL92U+GspFyHckDIghGQGSJ3CjyddTU2WQS57EmxYT6hw6uw/1vAH4sq3wZSXXWJLdM7OdthDvXAnXgiQ9h6gURE2KMrRvBLUK4oUXL/GvwNlJn+UXM/CaHyJmOih71Bic/5WZ1toLnM6+i8dfkw/zpRd+TjCETqI3yAFwwpPcpq0WxWDXv1GngDbn2uLrViRxVJ6OUyXVo9MIaZxCamzwl1pb25GgKXTtQLPtP8agkBGaCTMHW5KZHv32oEOP14Wj+P+C0CRrAg9dKDv6B3dHLHBrLoZCgsOgDh0YYG0lVutTJba0nT9Omx997y6MGAFcJ+Ydf8WOuGpGMymk=";
             byte[] aesKeyBytes = Base64.getDecoder().decode(aesKey.getBytes());
-            String decryptedKey = RSA_Decrypt("../Keypair/public.der", aesKeyBytes);
+            String decryptedKey = RSA_Decrypt("../../keypair/public.der", aesKeyBytes);
             
             System.out.println("Decrypted AES Key: " + decryptedKey);
 

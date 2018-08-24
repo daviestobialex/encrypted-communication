@@ -45,7 +45,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/encrypted-communication/Go/security"
+	"github.com/encrypted-communication/server/Go/security"
 )
 
 func main() {
@@ -57,7 +57,7 @@ func main() {
 
 	//decrypt the cipherKey using RSA public key to gain AES key
 	cipherKeyByte, _ := base64.StdEncoding.DecodeString(cipherKey)
-	aesKey, err := security.RSADecrypt(cipherKeyByte, "../Keypair/go_compatible_private.pem")
+	aesKey, err := security.RSADecrypt(cipherKeyByte, "../../keypair/go_compatible_private.pem")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -85,7 +85,7 @@ func main() {
 	fmt.Println("aes_value: " + encrypted)
 
 	//now encrypt the AES key using RSA
-	keyBytes, err := security.RSAEncrypt(key, "../Keypair/go_compatible_private.pem")
+	keyBytes, err := security.RSAEncrypt(key, "../../keypair/go_compatible_private.pem")
 	if err != nil {
 		log.Fatal(err)
 	}
