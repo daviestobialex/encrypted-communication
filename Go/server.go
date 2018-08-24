@@ -85,7 +85,7 @@ func main() {
 	fmt.Println("aes_value: " + encrypted)
 
 	//now encrypt the AES key using RSA
-	keyBytes, err := security.Seethis(key, "../Keypair/go_compatible_private.pem")
+	keyBytes, err := security.RSAEncrypt(key, "../Keypair/go_compatible_private.pem")
 	if err != nil {
 		log.Fatal(err)
 	}
