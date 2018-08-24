@@ -32,7 +32,7 @@ The goal is to create a secure communication between an android application and 
 
 - ~~Need to replace the depricated mcrypt PHP function with OpenSSL~~
 - Create an Android application 
-- Add server side scripts for Go, Node, Python, C# and Ruby
+- Add server side scripts for ~~Go~~, Node, Python, C# and Ruby
 
 **Files**
 - [server.php](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/PHP/server.php)
@@ -81,7 +81,9 @@ The goal is to create a secure communication between an android application and 
 
 **Contribution**
 
-There is always room for improvement, I am planning to improve the communication security by replacing ECB mode to CBC, and few others. Also I am thinking to add more and more client (mobile) and server languages for secure communication. Like in future I will keep on adding more server side languages, compatible encryption/decryption methods among them, also I will add mobile mobile side apps like for iOS, React Native, Windows Phone etc
+There is always room for improvement. 
+
+I am thinking to add more and more client (mobile) and server languages for secure communication. Like in future I will keep on adding more server side languages, compatible encryption/decryption methods among them, add mobile apps like iOS, React Native, Windows Phone and others
 
 
 This project is open for contribution, create a PR with detailed changes, or create a bug report
