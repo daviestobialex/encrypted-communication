@@ -1,0 +1,8 @@
+# ignore any compiled Java classes during tests
+*.class
+
+#ignore IDE files
+.idea/*
+*.idea
+.vscode/*
+.vscode

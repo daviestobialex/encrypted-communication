@@ -1,4 +1,4 @@
-# Secure communication between Android and Server
+# Secure communication between Mobile and Server (RSA 4096/AES) 😎
 
 **Abstract**
 
@@ -30,9 +30,9 @@ The goal is to create a secure communication between an android application and 
 
 **TODO**
 
-- Need to replace the depricated mcrypt PHP function with OpenSSL
+- ~~Need to replace the depricated mcrypt PHP function with OpenSSL~~
 - Create an Android application 
-- Add server side scripts for Go, Node, Python, C# and Ruby
+- Add server side scripts for ~~Go~~, Node, Python, C# and Ruby
 
 **Files**
 - [server.php](https://github.com/tejashwikalptaru/encrypted-communication/blob/master/PHP/server.php)
@@ -71,11 +71,19 @@ The goal is to create a secure communication between an android application and 
 
 
 **Knowledge Base**
-> This project uses RSA 4096, AES 128 ECB
+> This project uses RSA 4096, ~~AES 128 ECB~~ AES 256 CBC
+
 > Private key is created using PHP OpenSSL
+
 > To create public key (.der) use the command: openssl rsa -in private.pem -pubout -outform DER -out public.der
+
 > You can convert the private.pem to Go compatible PEM using command: openssl rsa -in private.pem -out go_compatible_private.pem
 
 **Contribution**
-There is always room for improvement, I am planning to improve the communication security by replacing ECB mode to CBC, and few others. Also I am thinking to add more and more client (mobile) and server languages for secure communication. Like in future I will keep on adding more server side languages, compatible encryption/decryption methods among them, also I will add mobile mobile side apps like for iOS, React Native, Windows Phone etc
-This project is open for contribution, create a PR with detailed changes.
+
+There is always room for improvement. 
+
+I am thinking to add more and more client (mobile) and server languages for secure communication. Like in future I will keep on adding more server side languages, compatible encryption/decryption methods among them, add mobile apps like iOS, React Native, Windows Phone and others
+
+
+This project is open for contribution, create a PR with detailed changes, or create a bug report

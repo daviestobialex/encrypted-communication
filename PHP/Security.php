@@ -37,8 +37,6 @@
             2. Encrypted key will be decrypted using public key (RSA)
             3. Using the decrypted key, the response will be decrypted
             4. Use the response
-
-        TODO: Will replace the depricated mcrypt with OpenSSL in future 🧐
     */
 
     class Security{
@@ -109,37 +107,20 @@
             return bin2hex(openssl_random_pseudo_bytes(16)); //128 bit
         }
 
-        //Encrypt message using key, uses AES
-        public function AES_Encrypt($input, $key) {
-            $size = @mcrypt_get_block_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_ECB); 
-            $input = $this->pkcs5_pad($input, $size); 
-            $td = @mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_ECB, ''); 
-            $iv = @mcrypt_create_iv (mcrypt_enc_get_iv_size($td), MCRYPT_RAND); 
-            @mcrypt_generic_init($td, $key, $iv); 
-            $data = @mcrypt_generic($td, $input); 
-            @mcrypt_generic_deinit($td); 
-            @mcrypt_module_close($td); 
-            return $data; 
-        } 
+        //Encrypt message using AES-CBC-256
+        public function AES_CBC_Encrypt($plaintext, $key){
+            $ivlen = openssl_cipher_iv_length($cipher="AES-256-CBC");
+            $iv = openssl_random_pseudo_bytes($ivlen);
+            $ciphertext_raw = openssl_encrypt($plaintext, $cipher, $key, OPENSSL_RAW_DATA, $iv);
+            return ( $iv.$ciphertext_raw );
+        }
 
-        //Function to pad the given message using blocksize, PKCS5 padding
-        private function pkcs5_pad ($text, $blocksize) { 
-            $pad = $blocksize - (strlen($text) % $blocksize); 
-            return $text . str_repeat(chr($pad), $pad); 
-        } 
-
-        //Decrypt AES message using key
-        public function AES_Decrypt($sStr, $sKey) {
-            $decrypted= @mcrypt_decrypt(
-                MCRYPT_RIJNDAEL_128,
-                $sKey, 
-                $sStr, 
-                MCRYPT_MODE_ECB
-            );
-            $dec_s = strlen($decrypted); 
-            $padding = ord($decrypted[$dec_s-1]); 
-            $decrypted = substr($decrypted, 0, -$padding);
-            return $decrypted;
+        //Decrypt AES message using AES-CBC-256
+        public function AES_CBC_Decrypt($ciphertext, $key){
+            $ivlen = openssl_cipher_iv_length($cipher="AES-256-CBC");
+            $iv = substr($ciphertext, 0, $ivlen);
+            $ciphertext_raw = substr($ciphertext, $ivlen, strlen($ciphertext));
+            return openssl_decrypt($ciphertext_raw, $cipher, $key, OPENSSL_RAW_DATA, $iv);
         }
     }
 ?>
