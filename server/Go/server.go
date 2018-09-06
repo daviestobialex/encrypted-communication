@@ -55,7 +55,7 @@ func main() {
 	//AES encrypted message
 	cipherMessage := "VsfdnLS7BJznflSQeLVMBSJk+agp1jf4PeLMIOf/C47a/armSwB1ZaSaOnxhFF4uekVz8T6subSbyvLI68luNc7hQEokXF8a08aOd8IN7GwwDZsO8hFeAuuwvtyP7PdKyyPQPX2uT1gd/hTnr73Oag=="
 
-	//decrypt the cipherKey using RSA public key to gain AES key
+	//decrypt the cipherKey using RSA private key to gain AES key
 	cipherKeyByte, _ := base64.StdEncoding.DecodeString(cipherKey)
 	aesKey, err := security.RSADecrypt(cipherKeyByte, "../../keypair/go_compatible_private.pem")
 	if err != nil {
@@ -84,7 +84,7 @@ func main() {
 
 	fmt.Println("aes_value: " + encrypted)
 
-	//now encrypt the AES key using RSA
+	//now encrypt the AES key using RSA private key
 	keyBytes, err := security.RSAEncrypt(key, "../../keypair/go_compatible_private.pem")
 	if err != nil {
 		log.Fatal(err)
